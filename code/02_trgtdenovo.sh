@@ -28,9 +28,9 @@ for ((i = 0; i < n; i++)); do
 		continue
 	fi
 
-	mkdir -p ${sample}/
-	cd ${sample}/
-	echo "Started processing sample: $sample, Father: $father, Mother: $mother at $(date)" >> ${trgt_denovo_log} 2>&1
+	mkdir -p ${sample}
+	cd ${sample}
+	echo "Started processing sample: ${sample}, Father: ${father}, Mother: ${mother} at $(date)" >> ${trgt_denovo_log} 2>&1
 	time $trgtdenovo_exec trio \
 		-@ ${trgt_denovo_parallel} \
 		--reference ${reference_genome} \
@@ -42,4 +42,4 @@ for ((i = 0; i < n; i++)); do
 	cd ../
 done
 
-echo "Completed processing all samples at $(date)"
+echo "Completed processing all samples at $(date)" >> ${trgt_denovo_log} 2>&1

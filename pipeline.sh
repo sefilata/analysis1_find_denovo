@@ -4,8 +4,8 @@ config=../config.sh
 source ${config}
 
 cd ${base_dir}
-mkdir -p $analysis_dir
-mkdir -p $log_dir
+mkdir -p ${analysis_dir}
+mkdir -p ${log_dir}
 make -C ${code_dir}
 
 # TRGT

@@ -44,10 +44,10 @@ for ((i = 0; i < n; i++)); do
 	father=${father_list[$i]}
 	mother=${mother_list[$i]}
 
-	mkdir -p ${sample}/
-	cd ${sample}/
+	mkdir -p ${sample}
+	cd ${sample}
 
-	echo "Started processing sample: $sample, Father: $father, Mother: $mother at $(date)"
+	echo "Started processing sample: ${sample}, Father: ${father}, Mother: ${mother} at $(date)" >> ${validate_count_log} 2>&1
 
 	father_vcf="${trgt_dir}/${father}/${father}.sorted.vcf"
 	mother_vcf="${trgt_dir}/${mother}/${mother}.sorted.vcf"
@@ -73,5 +73,5 @@ for ((i = 0; i < n; i++)); do
 	cd ../
 done
 
-echo "Completed processing all samples at $(date)"
+echo "Completed processing all samples with mode ${exec_mode} at $(date)" >> ${validate_count_log} 2>&1
 

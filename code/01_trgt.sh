@@ -26,8 +26,8 @@ for ((i = 0; i < n; i++)); do
 		continue
 	fi
 
-	mkdir -p ${sample}/
-	cd ${sample}/
+	mkdir -p ${sample}
+	cd ${sample}
 	echo "Started processing sample: ${sample}, Karyotype: ${karyotype} at $(date)" >> ${trgt_log} 2>&1
 
 	reads=${data_path_prefix}${sample}${data_path_suffix}
@@ -40,10 +40,10 @@ for ((i = 0; i < n; i++)); do
 		--karyotype ${karyotype} >> ${trgt_log} 2>&1
 
 	bcftools sort -m 3072M -Ob -o ${sample}.sorted.vcf.gz ${sample}.vcf.gz >> ${trgt_log} 2>&1
-	bcftools index --threads 4 ${sample}.sorted.vcf.gz >> ${trgt_log} 2>&1
-	samtools sort -@ 32 -o ${sample}.spanning.sorted.bam ${sample}.spanning.bam >> ${trgt_log} 2>&1
-	samtools index -@ 32 ${sample}.spanning.sorted.bam >> ${trgt_log} 2>&1
+	bcftools index --threads ${trgt_parallel} ${sample}.sorted.vcf.gz >> ${trgt_log} 2>&1
+	samtools sort -@ ${trgt_parallel} -o ${sample}.spanning.sorted.bam ${sample}.spanning.bam >> ${trgt_log} 2>&1
+	samtools index -@ ${trgt_parallel} ${sample}.spanning.sorted.bam >> ${trgt_log} 2>&1
 	cd ../
 done
 
-echo "Completed processing all samples at $(date)"
+echo "Completed processing all samples at $(date)" >> ${trgt_log} 2>&1
