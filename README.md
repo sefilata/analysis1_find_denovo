@@ -77,8 +77,9 @@ bash pipeline.sh
 - **`filter_all.tsv`**  
   A list of all target tandem repeats, together with the counts of repeat units for each unit length or GC content.
 
+---
 
-# Example
+# Examples
 For your information, we used the following environment and data.
 ```bash
 # download sequence data
@@ -94,11 +95,13 @@ wget https://zenodo.org/records/13178746/files/chm13v2.0_maskedY_rCRS.platinumTR
 # Rust environment for TRGT
 conda create -n rust_trgt
 conda activete rust_trgt
-mamba install -c conda-forge rust -y
-mamba install -c conda-forge clangdev -y
+conda install -c conda-forge rust -y
+conda install -c conda-forge clangdev -y
 echo 'export LIBCLANG_PATH=$CONDA_PREFIX/lib' >> ~/.bashrc
 source ~/.bashrc
 ```
+
+---
 
 # References
 - Porubsky, D., Dashnow, H., Sasani, T.A. et al. Human de novo mutation rates from a four-generation pedigree reference. Nature 643, 427–436 (2025). https://doi.org/10.1038/s41586-025-08922-2
